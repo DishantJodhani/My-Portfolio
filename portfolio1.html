@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dishant Jodhani - Responsive Web Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --gradient-start: #1a2980;
+            --gradient-end: #26d0ce;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--secondary);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(44, 62, 80, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Home Section */
+        #home {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3') center/cover no-repeat;
+            background-attachment: fixed;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .home-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .home-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .home-content h1::after {
+            background: white;
+            width: 50%;
+            left: 25%;
+        }
+
+        .home-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .typed-text {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* About Section */
+        #about {
+            background-color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            max-width: 100%;
+        }
+
+        .about-img img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;   
+            z-index: 1;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .skill {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin: 0 10px 10px 0;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        #projects {
+            background: linear-gradient(135deg, #f5f7fa, #e4e7ec);
+            position: relative;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+
+        .project-tag {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 5px 15px;
+            border-radius: 30px;
+            margin: 0 10px 10px 0;
+            font-size: 0.9rem;
+        }
+
+        /* CV Section */
+        #cv {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            text-align: center;
+        }
+
+        .cv-content {
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cv-content h2 {
+            color: white;
+        }
+
+        .cv-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: white;
+        }
+
+        .timeline {
+            margin: 50px 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .timeline-item {
+            width: 50%;
+            padding: 20px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -10px;
+        }
+
+        .download-btn {
+            background: white;
+            color: var(--gradient-start);
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            margin-top: 30px;
+        }
+
+        .download-btn:hover {
+            color: var(--accent);
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-right: 20px;
+        }
+
+        .contact-text h3 {
+            margin-bottom: 5px;
+        }
+
+        .contact-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--primary);
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+        .containerCont {
+            max-width: 100% ;
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .contact-containerCont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .contact-infoCont {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-itemCont {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-iconCont {
+            font-size: 1.8rem;
+            color: white;
+            margin-right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-textCont h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .contact-textCont p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .contact-formCont {
+            padding: 50px 40px;
+            background: white;
+        }
+
+        .form-groupCont {
+            margin-bottom: 25px;
+        }
+
+        .form-groupCont label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        .form-groupCont input,
+        .form-groupCont textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .form-groupCont input:focus,
+        .form-groupCont textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+            background: white;
+        }
+
+        .form-groupCont textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .btnCont {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .btnCont:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .btnCont:active {
+            transform: translateY(-1px);
+        }
+
+        .success-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .success-popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-content {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            transform: translateY(30px);
+            transition: transform 0.4s ease;
+            position: relative;
+        }
+        
+        .success-popup.active .popup-content {
+            transform: translateY(0);
+        }
+        
+        .popup-content i {
+            font-size: 5rem;
+            color: #2ecc71;
+            margin-bottom: 25px;
+            display: block;
+        }
+        
+        .popup-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .popup-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .close-popup {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .close-popup:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .form-notice {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 25px;
+            font-size: 0.95rem;
+            color: #555;
+            text-align: center;
+            border: 1px solid #eaeaea;
+        }
+
+        .form-notice i {
+            margin-right: 8px;
+            color: var(--accent);
+        }
+        
+        /* RESPONSIVE IMPROVEMENTS */
+        /* Timeline adjustments for mobile */
+        @media (max-width: 992px) {
+            .timeline::before {
+                left: 10px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 40px;
+                padding-right: 0;
+                text-align: left !important;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::before {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd)::before {
+                left: 0;
+                right: auto;
+            }
+            
+            .contact-containerCont {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-infoCont {
+                padding: 40px 30px;
+            }
+            
+            .contact-formCont {
+                padding: 40px 30px;
+            }
+            
+            /* Center CV button on mobile */
+            .cv-content {
+                text-align: center;
+            }
+
+            .contact-containerCont {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .contact-infoCont, .contact-formCont {
+                padding: 40px 20px;
+            }
+
+        }
+
+        /* Tablet and mobile menu */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                color: white;
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                height: 100vh;
+                width: 70%;
+                flex-direction: column;
+                background: var(--secondary);
+                text-align: center;
+                transition: all 0.4s ease;
+                padding: 100px 0 0;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+            
+            .home-content h1 {
+                font-size: 3rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                max-width: 100%;
+                margin: 0 auto 30px;
+            }
+            
+            /* Home section adjustments */
+            #home .container {
+                max-width: 100% !important;
+            }
+            
+            .home-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .home-content p {
+                font-size: 1.2rem;
+            }
+            
+            /* Project card padding */
+            .project-info {
+                padding: 20px;
+            }
+            
+            /* Contact form padding */
+            .contact-infoCont, .contact-formCont {
+                padding: 30px 20px !important;
+            }
+
+            .containerCont {
+                padding: 10px;
+            }
+            .contact-infoCont, .contact-formCont {
+                padding: 30px 10px;
+            }
+            .contact-formCont {
+                border-radius: 0 0 20px 20px;
+            }
+            .contact-infoCont {
+                border-radius: 20px 20px 0 0;
+            }
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 576px) {
+            section {
+                padding: 60px 15px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .home-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .home-content p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 1rem;
+            }
+            
+            .popup-content {
+                padding: 30px 20px;
+            }
+            
+            .popup-content h3 {
+                font-size: 1.8rem;
+            }
+            
+            /* Timeline adjustments */
+            .timeline-item {
+                padding: 20px 20px 20px 40px;
+            }
+            
+            .timeline-item::before {
+                top: 25px;
+                left: 10px;
+            }
+            
+            /* Contact form button */
+            .btnCont {
+                font-size: 1rem;
+                padding: 14px;
+            }
+            
+            /* Navigation padding */
+            nav {
+                padding: 15px 20px;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            /* Social icons */
+            .social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+
+            .about-text p{
+                font-size: 1rem;
+            }
+
+            .project-info p{
+                font-size: 0.95rem;
+            }
+
+            .project-info h3{
+                font-size: 1.5rem;
+            }
+
+            .project-tag {
+                font-size: 0.8rem;
+            }
+            .skill {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+
+            .timeline-item h3 {
+                font-size: 1.4rem;
+            } 
+
+            .timeline-item h4, .timeline-item p {
+                font-size: 1rem;
+            } 
+
+            .containerCont {
+                padding: 5px;
+            }
+            .contact-infoCont, .contact-formCont {
+                padding: 20px 5px;
+            }
+            .form-groupCont input,
+            .form-groupCont textarea {
+                font-size: 0.95rem;
+                padding: 10px 10px;
+            }
+            .btnCont {
+                font-size: 1rem;
+                padding: 12px;
+            }
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+            .contact-textCont h3 {
+                font-size: 1.1rem;
+            }
+            .contact-textCont p {
+                font-size: 0.95rem;
+            }
+            .form-noticeCont{
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Small mobile devices */
+        @media (max-width: 400px) {
+            .home-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .project-card {
+                max-width: 100%;
+            }
+            
+            .skill {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .timeline-item h3 {
+                font-size: 1.5rem;
+            }
+
+            .contact-infoCont, .contact-formCont {
+                padding: 10px 2px;
+            }
+            .btnCont {
+                font-size: 0.95rem;
+                padding: 10px;
+            }
+
+            .form-noticeCont{
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Fix for mobile menu scroll lock */
+        body.menu-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>    
+        <nav>
+            <a href="#home" class="logo">Dishant<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="parallax-bg"></div>
+        <div class="container" style="max-width:80%;">
+            <div class="home-content" style="max-width: 100%;">
+                <h1>Dishant Jodhani</h1>
+                <p>I'm a <span class="typed-text">Web Developer</span></p>
+                <p>I build websites that work. Fast loading times, mobile-first design, and user interfaces that make sense the moment someone lands on your page. Whether you need an e-commerce store that converts visitors into customers or a portfolio site that showcases your work beautifully, I focus on clean code and practical solutions that solve real business problems.</p>
+                <a href="#projects" class="btn">View My Work</a>
+                <div class="social-icons">
+                    <a href="https://github.com/dishantjodhani"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/dishant-jodhani/"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://x.com/dishant_jodhani"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/dishantjodhani/"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="./imgs/allme.jpg" alt="Dishant Jodhani">
+                </div>
+                <div class="about-text">
+                    <h3>Hello! I'm Dishant</h3>
+                    <p>I'm a passionate full-stack web developer with over three years of experience, specializing in scalable, high-performance web applications. My focus is on creating seamless, user-centric experiences that consistently exceed client expectations.</p>
+                    <p>I thrive on challenges and continuously expand my knowledge through new frameworks and open-source contributions. By merging technical expertise with creative problem-solving, I craft intuitive experiences that prioritize performance, accessibility, and innovation—delivering solutions with tangible business impact.</p>
+                    <p>Beyond coding,I recharge by hiking mountain trails, bike riding, traveling, and trekking, which provide inspiration and clarity that fuel my creativity. This balance fuels my creativity and resilience, providing fresh perspectives that enhance my dedication to every project. My approach ensures engaging digital solutions that resonate with users.</p>
+                    <h3>My Skills</h3>
+                    <div class="skills">
+                        <span class="skill">Node.js</span>
+                        <span class="skill">React</span>
+                        <span class="skill">MongoDB</span>
+                        <span class="skill">Express</span>
+                        <span class="skill">JavaScript</span>
+                        <span class="skill">Responsive Design</span>
+                        <span class="skill">UI/UX Design</span>
+                        <span class="skill">Git & GitHub</span>
+                        <span class="skill">vue.js</span>
+                        <span class="skill">Wordpress</span>
+                        <span class="skill">Jquary</span>
+                        <span class="skill">HTML5</span>
+                        <span class="skill">CSS3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>My Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="./imgs/GameWebSite.png" alt="Project 1">
+                    </div>
+                    <div class="project-info">
+                        <h3>Reflex Master Game</h3>
+                        <p>Test your lightning-fast reflexes and see how quick you really are! This addictive reflex game challenges you to react instantly to visual cues, pushing your response time to the limit. Compete against yourself, beat your personal records, and discover just how sharp your gaming instincts can become.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Html</span>
+                            <span class="project-tag">Css</span>
+                            <span class="project-tag">Javascript</span>
+                        </div>
+                        <a href="https://dishant-node-marquee.w3spaces.com/index.html" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="./imgs/paystub.png" alt="Project 2">
+                    </div>
+                    <div class="project-info">
+                        <h3>Paystub USA</h3>
+                        <p>PaystubUSA makes creating paystubs and financial documents quick and easy. With simple templates and a user-friendly design, you can generate accurate documents in just a few steps. Fast, reliable, and hassle-free financial documentation made simple."</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">MongoDB</span>
+                            <span class="project-tag">Express</span>
+                        </div>
+                        <a href="https://paystubusa.com/" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="./imgs/bill-generator.png" alt="Project 3">
+                    </div>
+                    <div class="project-info">
+                        <h3>Online Bill Generater</h3>
+                        <p>Onlinebillgenerator makes creating professional documents effortless. Generate utility bills, 1099 forms, W2s, paystubs, and more with easy-to-use templates. Quick, accurate, and tailored to your needs.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">MongoDB</span>
+                            <span class="project-tag">Express</span>
+                            <span class="project-tag">Bootstrap</span>
+                        </div>
+                        <a href="https://onlinebillgenerator.com/" class="btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section id="cv">
+        <div class="container">
+            <div class="cv-content">
+                <h2>My Resume</h2>
+                <div class="timeline">
+                    <!-- Experience 1 -->
+                    <div class="timeline-item timeline-item2">
+                        <h3>Senior Web Developer</h3>
+                        <h4>GitLabMarquee Solution Pvt Ltd | 2024 - Present</h4>
+                        <p>Leading full-stack web development projects and mentoring junior developers. Architecting scalable web applications using modern technologies like React, Node.js, and cloud platforms. Collaborating with cross-functional teams to deliver enterprise-level solutions and optimize system performance.</p>
+                    </div>
+                    
+                    <!-- Experience 2 -->
+                    <div class="timeline-item">
+                        <h3>Frontend Developer</h3>
+                        <h4>Estanova Techsol LLP | 2023 - 2024</h4>
+                        <p>Developed responsive user interfaces and interactive web applications using JavaScript, HTML5, and CSS3. Worked closely with design teams to implement pixel-perfect layouts and ensure cross-browser compatibility. Contributed to code reviews and maintained coding standards across frontend projects.</p>
+                    </div>
+                    
+                    <!-- Education 1 -->
+                    <div class="timeline-item timeline-item2">
+                        <h3>BE B.Tech in Computer Science</h3>
+                        <h4>Amiraj College of Engineering & Technology | 2020 - 2024</h4>
+                        <p>Completed comprehensive computer science curriculum covering software engineering, data structures, algorithms, and web technologies. Engaged in practical projects involving database management, system design, and application development. Built strong foundation in programming languages and software development methodologies.</p>
+                    </div>
+                    
+                    <!-- Education 2 -->
+                    <div class="timeline-item">
+                        <h3>H S C</h3>
+                        <h4>Smt. R.C.Patel Secondary & Higher Secondary School| Completed in 2020</h4>
+                        <p>Completed higher secondary education with focus on science stream including Mathematics, Physics, and Chemistry. Developed analytical thinking and problem-solving skills that laid the groundwork for pursuing engineering. Participated in academic competitions and maintained consistent academic performance.</p>
+                    </div>
+                </div>
+                <button id="downloadBtn" class="btn download-btn">Download CV</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <div id="contact" class="containerCont">
+        <h2>Get In Touch</h2>
+        <div class="contact-containerCont">
+            <div class="contact-infoCont">
+                <div class="contact-itemCont">
+                    <div class="contact-iconCont">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-textCont">
+                        <h3>Location</h3>
+                        <p>Ahmedabad, India</p>
+                    </div>
+                </div>
+                
+                <div class="contact-itemCont">
+                    <div class="contact-iconCont">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-textCont">
+                        <h3>Email</h3>
+                        <p>dishantjodhani2003@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-itemCont">
+                    <div class="contact-iconCont">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-textCont">
+                        <h3>Phone</h3>
+                        <p>+91 79xxx xxxxx</p>
+                    </div>
+                </div>
+                
+                <div class="contact-itemCont">
+                    <div class="contact-iconCont"  style="width: 80px;">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <div class="contact-textCont">
+                        <h3>Email Delivery</h3>
+                        <p>Messages will be sent to dishantjodhani.dj@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-formCont">
+                <form id="contactFormCont" action="mailto:dishantjodhani.dj@gmail.com" method="post" enctype="text/plain">
+                    <div class="form-groupCont">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" required placeholder="Enter your name">
+                    </div>
+                    
+                    <div class="form-groupCont">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required placeholder="Enter your email">
+                    </div>
+                    
+                    <div class="form-groupCont">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" required placeholder="Message subject">
+                    </div>
+                    
+                    <div class="form-groupCont">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" required placeholder="Type your message here..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btnCont">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                    
+                    <div class="form-noticeCont">
+                        <i class="fas fa-info-circle"></i> We'll respond to your message within 24 hours
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Popup -->
+    <div class="success-popup" id="successPopup">
+        <div class="popup-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>Message Sent Successfully!</h3>
+            <p>Thank you for contacting Dishant</p>
+            <button class="close-popup" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Dishant<span>.</span></div>
+                <p>Creating innovative web solutions that make a difference.</p>
+                <div class="social-icons">
+                    <a href="https://github.com/dishantjodhani"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/dishant-jodhani/"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://x.com/dishant_jodhani"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/dishantjodhani/"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 Dishant Jodhani. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const body = document.body;
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            body.classList.toggle('menu-open');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                body.classList.remove('menu-open');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // CV Download Button
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const pdfUrl = './pdf/DISHANT_JODHANI_RESUME.pdf'; // Replace with your actual PDF file name
+            const link = document.createElement('a');
+            link.href = pdfUrl;
+            link.download = 'DishantJodhaniCV.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+        
+
+        // Simple Text Typing Effect
+        const typedTextSpan = document.querySelector('.typed-text');
+        const textArray = ["Web Developer","MERN Stack Developer","Wordpress Developer", "Full Stack Developer", "UI/UX Designer", "Frontend Specialist", "JavaScript Expert"];
+        let textArrayIndex = 0;
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 100);
+            } else {
+                setTimeout(erase, 2000);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+                charIndex--;
+                setTimeout(erase, 50);
+            } else {
+                textArrayIndex++;
+                if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+                setTimeout(type, 500);
+            }
+        }
+
+        // Start the typing effect when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(type, 1000);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '5px 0';
+                header.style.background = 'rgba(44, 62, 80, 1)';
+            } else {
+                header.style.padding = '';
+                header.style.background = 'rgba(44, 62, 80, 0.95)';
+            }
+        });
+
+        (function() {
+            // Replace with your actual EmailJS user ID
+            emailjs.init("XsFUf-TXxPj92tEzc");
+        })();
+        
+        // Form submission handler
+        document.getElementById('contactFormCont').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Show loading state
+            const submitBtn = document.querySelector('#contactFormCont .btnCont');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Prepare email parameters
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                subject: subject,
+                message: message,
+                // to_email: "dishantjodhani.dj@gmail.com"
+            };
+            
+
+            
+            // Actual EmailJS code for production:
+            emailjs.send('service_kf1w8dd', 'template_67t92kq', templateParams)
+                .then(function(response) {
+                    // Reset form
+                    document.getElementById('contactFormCont').reset();
+                    
+                    // Show success popup
+                    document.getElementById('successPopup').classList.add('active');
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    alert('Message failed to send. Please try again later.');
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                });
+        });
+        
+        // Close popup function
+        function closePopup() {
+            document.getElementById('successPopup').classList.remove('active');
+        }
+        
+        // Close popup when clicking outside content
+        document.getElementById('successPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+    </script>
+</body>
+</html>
