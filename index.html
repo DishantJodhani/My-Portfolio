@@ -36,7 +36,8 @@
         }
         
         html {
-            scroll-behavior: smooth
+            scroll-behavior: smooth;
+            overflow-x: hidden
         }
         
         body {
@@ -46,6 +47,7 @@
             line-height: 1.7;
             overflow-x: hidden;
             cursor: default;
+            -webkit-text-size-adjust: 100%;
         }
         
          ::selection {
@@ -112,7 +114,12 @@
         
         .marquee-bar {
             overflow: hidden;
-            padding: 14px 0;
+            padding: 0;
+            margin-top: 64px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             background: var(--cream-2);
             position: relative;
@@ -124,6 +131,7 @@
             gap: 60px;
             animation: marquee 25s linear infinite;
             white-space: nowrap;
+            align-items: center;
         }
         
         .marquee-track span {
@@ -135,6 +143,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            line-height: 1;
         }
         
         .marquee-track span::before {
@@ -441,7 +450,8 @@
         .hero-img-card img {
             width: 420px;
             max-width: 100%;
-            height: 520px;
+            height: auto;
+            aspect-ratio: 420 / 520;
             object-fit: cover;
             border-radius: 24px;
             position: relative;
@@ -529,7 +539,7 @@
         /* ====== SECTION COMMON ====== */
         
         .sec {
-            padding: 120px 40px
+            padding: 30px 40px
         }
         
         .sec-wrap {
@@ -585,28 +595,83 @@
         /* ====== BIG TEXT DIVIDER ====== */
         
         .big-divider {
-            padding: 10px 0;
+            padding: 24px 0;
             overflow: hidden;
             position: relative;
+            background: linear-gradient(135deg, var(--cream-2) 0%, rgba(232, 85, 61, .04) 50%, var(--cream-2) 100%);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .big-divider-row {
+            display: flex;
+            white-space: nowrap;
+            will-change: transform;
+            width: max-content;
+        }
+        
+        .big-divider-row.row-1 {
+            animation: scrollLeft 30s linear infinite;
+        }
+        
+        .big-divider-row.row-2 {
+            animation: scrollRight 35s linear infinite;
         }
         
         .big-divider-text {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(5rem, 12vw, 12rem);
+            font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 900;
-            color: transparent;
-            -webkit-text-stroke: 1px var(--border-dark);
             white-space: nowrap;
-            letter-spacing: 8px;
-            animation: scrollText 20s linear infinite;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
         }
         
-        @keyframes scrollText {
+        .big-divider-text.filled {
+            color: var(--dark);
+        }
+        
+        .big-divider-text.outline {
+            color: transparent;
+            -webkit-text-stroke: 1.2px var(--text-light);
+        }
+        
+        .big-divider-text .coral {
+            color: var(--coral);
+            -webkit-text-stroke: 0;
+        }
+        
+        .big-divider-text .dot-sep {
+            color: var(--coral);
+            -webkit-text-stroke: 0;
+            margin: 0 16px;
+            font-size: .45em;
+            vertical-align: middle;
+            opacity: .6;
+        }
+        
+        @keyframes scrollLeft {
             0% {
                 transform: translateX(0)
             }
             100% {
                 transform: translateX(-50%)
+            }
+        }
+        
+        @keyframes scrollRight {
+            0% {
+                transform: translateX(-50%)
+            }
+            100% {
+                transform: translateX(0)
             }
         }
         /* ====== ABOUT ====== */
@@ -1326,14 +1391,16 @@
             position: fixed;
             top: 0;
             right: -320px;
-            width: 300px;
+            width: min(300px, 80vw);
             height: 100vh;
+            height: 100dvh;
             background: #fff;
             border-left: 1px solid var(--border);
             z-index: 998;
             padding: 100px 30px 40px;
             transition: right .4s cubic-bezier(.4, 0, .2, 1);
             box-shadow: -20px 0 60px rgba(0, 0, 0, .1);
+            overflow-y: auto;
         }
         
         .mobile-drawer.open {
@@ -1470,40 +1537,62 @@
         }
         
         @media(max-width:768px) {
+            .navbar {
+                padding: 12px 0;
+                background: rgba(250, 248, 244, .95);
+                backdrop-filter: blur(16px);
+                border-bottom: 1px solid var(--border);
+            }
+            .navbar.scrolled {
+                padding: 10px 0
+            }
             .nav-menu,
             .nav-cta {
                 display: none
             }
             .menu-toggle {
                 display: grid;
-                place-items: center
+                place-items: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+                font-size: 1rem
+            }
+            .nav-wrap {
+                padding: 0 16px
+            }
+            .marquee-bar {
+                margin-top: 65px;
+                padding: 10px 0;
+                margin-bottom: 10px
             }
             .hero {
-                padding: 40px 20px 40px
+                padding: 10px 16px 30px
             }
             .sec {
-                padding: 60px 20px
+                padding: 60px 16px
             }
             .hero-left h1 {
-                font-size: 2.6rem;
+                font-size: 2.4rem;
                 letter-spacing: -1px
             }
             .hero-img-card img {
-                width: 250px;
-                height: 320px
+                width: 240px
             }
             .hero-img-card::before {
                 top: -10px;
                 right: -10px
             }
             .hero-stats {
-                gap: 24px
+                gap: 24px;
+                flex-wrap: wrap
             }
             .hero-stat .val {
                 font-size: 1.8rem
             }
             .hero-desc {
-                font-size: .95rem
+                font-size: .95rem;
+                max-width: 100%
             }
             .hero-btns {
                 flex-direction: column;
@@ -1520,7 +1609,10 @@
                 grid-template-columns: 1fr
             }
             .proj-thumb {
-                height: 180px
+                height: 200px
+            }
+            .proj-card {
+                border-radius: 16px
             }
             .form-row {
                 grid-template-columns: 1fr
@@ -1554,18 +1646,20 @@
                 gap: 10px
             }
             .big-divider-text {
-                font-size: 5rem
+                font-size: 2rem
+            }
+            .big-divider {
+                padding: 16px 0;
+                gap: 6px
             }
             .sec-title {
                 font-size: 1.8rem;
-                letter-spacing: -0.5px
+                letter-spacing: -0.5px;
+                word-break: break-word
             }
             .sec-subtitle {
                 font-size: .9rem;
                 margin-bottom: 40px
-            }
-            .marquee-bar {
-                padding: 10px 0
             }
             .marquee-track {
                 gap: 40px
@@ -1580,39 +1674,53 @@
             .ci-card {
                 padding: 16px 18px
             }
+            .ci-card p {
+                word-break: break-all
+            }
             .c-form {
                 padding: 28px 20px
             }
             .r-card {
                 padding: 22px 22px 22px 26px
             }
+            .r-card p {
+                word-break: break-word
+            }
             .about-right-card {
                 padding: 28px 20px
+            }
+            .about-text p {
+                word-break: break-word
             }
             .logo {
                 font-size: 1.3rem
             }
+            .cursor {
+                display: none
+            }
             /* AI widget adjustments */
             .ai-panel {
-                width: 320px;
+                width: min(320px, calc(100vw - 40px));
                 right: -10px
             }
         }
         
         @media(max-width:480px) {
             .hero {
-                padding: 30px 16px 30px
+                padding: 20px 14px 20px
             }
             .sec {
-                padding: 50px 16px
+                padding: 44px 14px
             }
             .hero-left h1 {
                 font-size: 2rem;
                 letter-spacing: -0.5px
             }
+            .hero-left h1 .outline {
+                -webkit-text-stroke: 1.5px var(--dark)
+            }
             .hero-img-card img {
-                width: 200px;
-                height: 260px
+                width: 200px
             }
             .hero-img-card::before {
                 top: -8px;
@@ -1623,39 +1731,62 @@
             }
             .hero-eyebrow {
                 font-size: .65rem;
-                padding: 6px 14px
+                padding: 6px 14px;
+                margin-bottom: 20px
             }
             .hero-sub {
-                font-size: .78rem
+                font-size: .75rem
             }
             .hero-desc {
-                font-size: .88rem;
-                margin-bottom: 28px
+                font-size: .85rem;
+                margin-bottom: 24px;
+                line-height: 1.7
             }
             .hero-stat .val {
                 font-size: 1.5rem
             }
             .hero-stat .lbl {
-                font-size: .65rem
+                font-size: .6rem;
+                letter-spacing: .5px
             }
             .hero-stats {
-                gap: 20px
+                gap: 18px
+            }
+            .hero-btns {
+                margin-bottom: 30px
             }
             .sec-title {
-                font-size: 1.5rem
+                font-size: 1.45rem;
+                letter-spacing: -0.5px
             }
             .sec-label {
-                font-size: .65rem;
-                letter-spacing: 3px
+                font-size: .62rem;
+                letter-spacing: 2.5px;
+                margin-bottom: 8px
+            }
+            .sec-label::before {
+                width: 24px
+            }
+            .sec-subtitle {
+                font-size: .85rem;
+                margin-bottom: 30px
             }
             .a-counter .big {
-                font-size: 1.6rem
+                font-size: 1.5rem
             }
             .a-counter {
-                padding: 14px 6px
+                padding: 12px 4px;
+                border-radius: 12px
+            }
+            .a-counter .small {
+                font-size: .6rem;
+                letter-spacing: 1px
             }
             .about-counters {
-                gap: 8px
+                gap: 6px
+            }
+            .about-text p {
+                font-size: .92rem
             }
             .skill-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1663,112 +1794,189 @@
             }
             .skill-pill {
                 padding: 10px 6px;
-                font-size: .75rem
+                font-size: .73rem;
+                border-radius: 10px
             }
             .about-right-card .skill-grid {
-                grid-template-columns: 1fr !important
+                grid-template-columns: 1fr 1fr !important
+            }
+            .about-right-card {
+                padding: 22px 16px;
+                border-radius: 18px
+            }
+            .about-right-card .stack-title {
+                font-size: .65rem
             }
             .proj-body {
-                padding: 20px 20px 24px
+                padding: 18px 16px 22px
             }
             .proj-body h3 {
-                font-size: 1.1rem
+                font-size: 1.05rem
+            }
+            .proj-body p {
+                font-size: .82rem
+            }
+            .proj-tags {
+                gap: 5px;
+                margin-bottom: 14px
             }
             .proj-tags span {
                 font-size: .6rem;
                 padding: 4px 10px
             }
             .proj-thumb {
-                height: 160px
+                height: 180px
+            }
+            .proj-thumb .proj-num {
+                font-size: 2.5rem
+            }
+            .proj-link {
+                font-size: .8rem
             }
             .r-card {
-                padding: 18px 18px 18px 22px
+                padding: 18px 16px 18px 20px;
+                border-radius: 14px
+            }
+            .r-card::before {
+                top: 12px;
+                bottom: 12px
             }
             .r-card h4 {
-                font-size: .95rem
+                font-size: .92rem
             }
             .r-card .meta {
-                font-size: .65rem
+                font-size: .62rem
             }
             .r-card p {
-                font-size: .82rem
+                font-size: .8rem
             }
             .resume-col-head {
-                font-size: 1.1rem
+                font-size: 1.05rem;
+                gap: 10px
+            }
+            .resume-col-head i {
+                width: 32px;
+                height: 32px;
+                font-size: .8rem
             }
             .c-form {
-                padding: 20px 16px;
-                border-radius: 18px
+                padding: 20px 14px;
+                border-radius: 16px
+            }
+            .c-form::before {
+                height: 2px
+            }
+            .fg {
+                margin-bottom: 14px
             }
             .fg input,
             .fg textarea {
                 padding: 12px 14px;
-                font-size: .85rem
+                font-size: .85rem;
+                border-radius: 12px
+            }
+            .fg textarea {
+                height: 100px
             }
             .fg label {
-                font-size: .65rem
+                font-size: .62rem;
+                margin-bottom: 6px
             }
             .submit-btn {
                 padding: 14px;
-                font-size: .85rem
+                font-size: .85rem;
+                border-radius: 50px
+            }
+            .form-note {
+                font-size: .62rem
             }
             .ci-card {
-                padding: 14px 16px;
-                gap: 14px
+                padding: 14px 14px;
+                gap: 12px;
+                border-radius: 14px
             }
             .ci-card .ci-ico {
-                width: 42px;
-                height: 42px;
-                font-size: .95rem
+                width: 40px;
+                height: 40px;
+                font-size: .9rem;
+                border-radius: 10px
+            }
+            .ci-card h5 {
+                font-size: .6rem
             }
             .ci-card p {
-                font-size: .85rem
+                font-size: .82rem
             }
             .big-divider-text {
-                font-size: 3.5rem
+                font-size: 1.5rem;
+                letter-spacing: 2px
+            }
+            .big-divider {
+                padding: 12px 0;
+                gap: 4px
             }
             .footer {
-                padding: 36px 16px 20px
+                padding: 30px 14px 18px
+            }
+            .footer::before {
+                font-size: 8rem
             }
             .footer-brand {
-                font-size: 1.4rem
+                font-size: 1.3rem
             }
             .footer-tagline {
-                font-size: .8rem
+                font-size: .78rem
+            }
+            .footer-socials {
+                gap: 8px
             }
             .footer-socials a {
-                width: 38px;
-                height: 38px;
-                font-size: .85rem
+                width: 36px;
+                height: 36px;
+                font-size: .8rem;
+                border-radius: 10px
             }
             .footer-copy {
-                font-size: .65rem
+                font-size: .62rem
             }
             .footer-nav a {
                 font-size: .72rem
             }
             .footer-nav {
-                gap: 16px
+                gap: 14px
             }
             .btn-primary,
             .btn-outline {
-                padding: 14px 28px;
+                padding: 13px 24px;
                 font-size: .82rem
             }
             .popup-box {
-                padding: 36px 28px;
-                border-radius: 22px
+                padding: 32px 24px;
+                border-radius: 20px;
+                width: 92%
+            }
+            .popup-box .check-icon {
+                width: 56px;
+                height: 56px
+            }
+            .popup-box .check-icon i {
+                font-size: 1.4rem
             }
             .popup-box h3 {
-                font-size: 1.25rem
+                font-size: 1.15rem
             }
             .popup-box p {
-                font-size: .85rem
+                font-size: .82rem;
+                margin-bottom: 22px
+            }
+            .popup-close {
+                padding: 10px 30px;
+                font-size: .82rem
             }
             /* AI widget */
             .ai-panel {
-                width: 280px;
-                right: -16px
+                width: min(280px, calc(100vw - 40px));
+                right: -8px
             }
             .ai-widget {
                 bottom: 16px;
@@ -1779,30 +1987,92 @@
                 height: 48px;
                 font-size: 1rem
             }
+            .ai-head {
+                padding: 14px 16px
+            }
+            .ai-head-info h4 {
+                font-size: .85rem
+            }
+            .ai-body {
+                padding: 12px;
+                min-height: 160px;
+                max-height: 240px
+            }
+            .ai-msg .m-bubble {
+                max-width: 220px;
+                font-size: .78rem;
+                padding: 9px 12px
+            }
+            .ai-chips {
+                padding: 4px 12px 0;
+                gap: 4px
+            }
+            .ai-chip {
+                font-size: .62rem;
+                padding: 4px 10px
+            }
+            .ai-foot {
+                padding: 10px 12px
+            }
+            .ai-input {
+                padding: 10px 14px;
+                font-size: .78rem
+            }
+            .ai-send-btn {
+                width: 36px;
+                height: 36px;
+                font-size: .75rem
+            }
         }
         
         @media(max-width:360px) {
-            .hero-left h1 {
-                font-size: 1.7rem
-            }
-            .hero-img-card img {
-                width: 180px;
-                height: 230px
-            }
-            .hero-desc {
-                font-size: .82rem
-            }
-            .hero-stat .val {
-                font-size: 1.3rem
-            }
-            .hero-stats {
-                gap: 16px
-            }
-            .sec-title {
-                font-size: 1.3rem
+            .hero {
+                padding: 16px 12px 16px
             }
             .sec {
-                padding: 40px 14px
+                padding: 36px 12px
+            }
+            .hero-left h1 {
+                font-size: 1.7rem;
+                letter-spacing: 0
+            }
+            .hero-img-card img {
+                width: 170px
+            }
+            .hero-img-card::before {
+                top: -6px;
+                right: -6px
+            }
+            .hero-eyebrow {
+                font-size: .6rem;
+                padding: 5px 12px;
+                gap: 6px
+            }
+            .hero-desc {
+                font-size: .8rem
+            }
+            .hero-sub {
+                font-size: .7rem
+            }
+            .hero-stat .val {
+                font-size: 1.25rem
+            }
+            .hero-stat .lbl {
+                font-size: .55rem
+            }
+            .hero-stats {
+                gap: 14px
+            }
+            .sec-title {
+                font-size: 1.25rem
+            }
+            .sec-label {
+                font-size: .58rem;
+                letter-spacing: 2px
+            }
+            .sec-subtitle {
+                font-size: .8rem;
+                margin-bottom: 24px
             }
             .skill-grid {
                 grid-template-columns: 1fr 1fr;
@@ -1810,32 +2080,131 @@
             }
             .skill-pill {
                 padding: 8px 4px;
-                font-size: .7rem
+                font-size: .68rem
             }
             .about-counters {
-                grid-template-columns: 1fr 1fr 1fr
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 5px
             }
             .a-counter .big {
-                font-size: 1.3rem
+                font-size: 1.2rem
+            }
+            .a-counter .small {
+                font-size: .55rem
+            }
+            .a-counter {
+                padding: 10px 2px
+            }
+            .about-right-card {
+                padding: 18px 12px
             }
             .proj-thumb {
-                height: 140px
+                height: 150px
+            }
+            .proj-body {
+                padding: 16px 14px 20px
+            }
+            .proj-body h3 {
+                font-size: .95rem
+            }
+            .proj-body p {
+                font-size: .78rem
+            }
+            .r-card {
+                padding: 14px 14px 14px 18px;
+                margin-bottom: 12px
+            }
+            .r-card h4 {
+                font-size: .85rem
+            }
+            .r-card p {
+                font-size: .76rem
+            }
+            .resume-col-head {
+                font-size: .95rem;
+                margin-bottom: 20px
             }
             .big-divider-text {
-                font-size: 2.5rem
+                font-size: 1.2rem;
+                letter-spacing: 2px
+            }
+            .big-divider {
+                padding: 10px 0;
+                gap: 3px
             }
             .ci-card {
                 flex-direction: column;
                 text-align: center;
-                gap: 10px
+                gap: 8px;
+                padding: 12px
+            }
+            .ci-card h5 {
+                font-size: .55rem
+            }
+            .ci-card p {
+                font-size: .78rem
+            }
+            .c-form {
+                padding: 16px 12px
+            }
+            .fg input,
+            .fg textarea {
+                padding: 10px 12px;
+                font-size: .82rem
+            }
+            .submit-btn {
+                padding: 12px;
+                font-size: .8rem
+            }
+            .footer {
+                padding: 24px 12px 16px
+            }
+            .footer-brand {
+                font-size: 1.2rem
+            }
+            .footer-tagline {
+                font-size: .72rem
+            }
+            .footer-socials a {
+                width: 34px;
+                height: 34px;
+                font-size: .75rem
+            }
+            .footer-nav {
+                gap: 12px
+            }
+            .footer-nav a {
+                font-size: .65rem
+            }
+            .footer-copy {
+                font-size: .58rem
+            }
+            .btn-primary,
+            .btn-outline {
+                padding: 12px 20px;
+                font-size: .78rem;
+                max-width: 240px
+            }
+            .nav-wrap {
+                padding: 0 12px
+            }
+            .marquee-bar {
+                margin-top: 65px;
+                padding: 8px 0;
+                margin-bottom: 8px
             }
             .ai-panel {
-                width: 260px;
-                right: -12px;
-                max-height: 440px
+                width: min(260px, calc(100vw - 32px));
+                right: -8px;
+                max-height: 420px
             }
             .ai-input {
-                font-size: .75rem
+                font-size: .72rem;
+                padding: 8px 12px
+            }
+            .ai-send-btn {
+                width: 34px;
+                height: 34px
             }
         }
         
@@ -2141,24 +2510,6 @@
             cursor: default;
             transform: none
         }
-        
-        @media(max-width:768px) {
-            .ai-panel {
-                width: 320px;
-                right: -10px
-            }
-        }
-        
-        @media(max-width:480px) {
-            .ai-panel {
-                width: 290px;
-                right: -16px
-            }
-            .ai-widget {
-                bottom: 18px;
-                right: 18px
-            }
-        }
     </style>
 </head>
 
@@ -2199,7 +2550,7 @@
     </div>
 
     <!-- Marquee -->
-    <div class="marquee-bar" style="margin-top:64px">
+    <div class="marquee-bar">
         <div class="marquee-track">
             <span>Full Stack Developer</span><span>React &amp; Node.js</span>
             <span>Web Applications</span><span>UI/UX Design</span>
@@ -2248,7 +2599,7 @@
                         <div class="badge-icon"><i class="fas fa-code"></i></div>
                         <div class="badge-text">
                             <h5>Current Role</h5>
-                            <p>Software Developer</p>
+                            <p>sr.Software Developer</p>
                         </div>
                     </div>
                 </div>
@@ -2258,7 +2609,44 @@
 
     <!-- Big Text Divider -->
     <div class="big-divider">
-        <div class="big-divider-text">ABOUT ME &nbsp;&bull;&nbsp; ABOUT ME &nbsp;&bull;&nbsp; ABOUT ME &nbsp;&bull;&nbsp; ABOUT ME &nbsp;&bull;&nbsp; ABOUT ME &nbsp;&bull;&nbsp;</div>
+        <div class="big-divider-row row-1">
+            <span class="big-divider-text filled">MERN STACK<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline">FULL STACK DEVELOPER<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled"><span class="coral">AI TOOL SPECIALIST</span><span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline">SR. DEVELOPER<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled">AI TRADING TOOL MAKER<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline"><span class="coral">REACT &amp; NODE.JS</span><span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled">TYPESCRIPT EXPERT<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline">ABOUT ME<span class="dot-sep">&diams;</span></span>
+            <!-- duplicate for seamless loop -->
+            <span class="big-divider-text filled">MERN STACK<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline">FULL STACK DEVELOPER<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled"><span class="coral">AI TOOL SPECIALIST</span><span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline">SR. DEVELOPER<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled">AI TRADING TOOL MAKER<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline"><span class="coral">REACT &amp; NODE.JS</span><span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled">TYPESCRIPT EXPERT<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline">ABOUT ME<span class="dot-sep">&diams;</span></span>
+        </div>
+        <div class="big-divider-row row-2">
+            <span class="big-divider-text outline">MICROSERVICES<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled"><span class="coral">NEXT.JS &amp; NESTJS</span><span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline">CREATIVE CODER<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled">MONGODB &amp; POSTGRESQL<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline"><span class="coral">PROBLEM SOLVER</span><span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled">REST API ARCHITECT<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline">DEVOPS &amp; CI/CD<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled"><span class="coral">50K+ USERS</span><span class="dot-sep">&diams;</span></span>
+            <!-- duplicate for seamless loop -->
+            <span class="big-divider-text outline">MICROSERVICES<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled"><span class="coral">NEXT.JS &amp; NESTJS</span><span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline">CREATIVE CODER<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled">MONGODB &amp; POSTGRESQL<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline"><span class="coral">PROBLEM SOLVER</span><span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled">REST API ARCHITECT<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text outline">DEVOPS &amp; CI/CD<span class="dot-sep">&diams;</span></span>
+            <span class="big-divider-text filled"><span class="coral">50K+ USERS</span><span class="dot-sep">&diams;</span></span>
+        </div>
     </div>
 
     <!-- About -->
@@ -2338,9 +2726,9 @@
     </section>
 
     <!-- Big Text Divider -->
-    <div class="big-divider">
+    <!-- <div class="big-divider">
         <div class="big-divider-text">PROJECTS &nbsp;&bull;&nbsp; PORTFOLIO &nbsp;&bull;&nbsp; PROJECTS &nbsp;&bull;&nbsp; PORTFOLIO &nbsp;&bull;&nbsp; PROJECTS &nbsp;&bull;&nbsp;</div>
-    </div>
+    </div> -->
 
     <!-- Projects -->
     <section class="sec projects-sec" id="projects">
@@ -2627,19 +3015,6 @@
         // ====== NAVBAR SCROLL ======
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // ====== PARALLAX on big divider text ======
-        const bigDividers = document.querySelectorAll('.big-divider');
-        window.addEventListener('scroll', () => {
-            bigDividers.forEach(div => {
-                const rect = div.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-                    const text = div.querySelector('.big-divider-text');
-                    if (text) text.style.transform = `translateX(${-progress * 200}px)`;
-                }
-            });
         });
 
         // ====== SCROLL REVEAL ======
