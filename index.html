@@ -1482,6 +1482,421 @@
             opacity: 1;
             transform: scale(1)
         }
+        /* ====== AI CHAT WIDGET ====== */
+        
+        .ai-widget {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 990
+        }
+        
+        .ai-fab {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--dark);
+            border: none;
+            color: var(--cream);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 8px 30px rgba(26, 26, 46, .35);
+            transition: .4s;
+        }
+        
+        .ai-fab:hover {
+            background: var(--coral);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(232, 85, 61, .3)
+        }
+        
+        .ai-panel {
+            position: absolute;
+            bottom: 72px;
+            right: 0;
+            width: 370px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .15);
+            display: flex;
+            flex-direction: column;
+            max-height: 520px;
+            overflow: hidden;
+            transform: scale(.9) translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all .35s cubic-bezier(.4, 0, .2, 1);
+        }
+        
+        .ai-panel.open {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            visibility: visible
+        }
+        
+        .ai-head {
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid var(--border);
+            background: var(--cream);
+            border-radius: 24px 24px 0 0;
+        }
+        
+        .ai-ava {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--coral-light);
+            display: grid;
+            place-items: center;
+            color: var(--coral);
+            font-size: .95rem;
+            flex-shrink: 0;
+        }
+        
+        .ai-head-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: .95rem;
+            font-weight: 700;
+            color: var(--dark)
+        }
+        
+        .ai-head-info p {
+            font-size: .7rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+        
+        .ai-head-info .dot {
+            width: 7px;
+            height: 7px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: inline-block
+        }
+        
+        .ai-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-height: 200px;
+            max-height: 300px
+        }
+        
+        .ai-body::-webkit-scrollbar {
+            width: 4px
+        }
+        
+        .ai-body::-webkit-scrollbar-thumb {
+            background: var(--border-dark);
+            border-radius: 4px
+        }
+        
+        .ai-msg {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start
+        }
+        
+        .ai-msg .m-ava {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            font-size: .55rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .ai-msg .m-ava {
+            background: var(--coral-light);
+            color: var(--coral)
+        }
+        
+        .ai-msg .m-bubble {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 4px 16px 16px 16px;
+            padding: 11px 15px;
+            font-size: .82rem;
+            color: var(--text-mid);
+            line-height: 1.7;
+            max-width: 270px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .ai-msg .m-bubble strong {
+            color: var(--dark);
+            font-weight: 600
+        }
+        
+        .ai-msg .m-bubble .hl {
+            color: var(--coral);
+            font-weight: 600
+        }
+        
+        .ai-msg .m-bubble .hl2 {
+            color: var(--indigo);
+            font-weight: 600
+        }
+        
+        .ai-typing {
+            display: flex;
+            gap: 4px;
+            padding: 4px 0 8px 36px
+        }
+        
+        .ai-typing span {
+            width: 6px;
+            height: 6px;
+            background: var(--text-light);
+            border-radius: 50%;
+            animation: typDot 1.4s infinite
+        }
+        
+        .ai-typing span:nth-child(2) {
+            animation-delay: .2s
+        }
+        
+        .ai-typing span:nth-child(3) {
+            animation-delay: .4s
+        }
+        
+        @keyframes typDot {
+            0%,
+            60%,
+            100% {
+                opacity: .3;
+                transform: translateY(0)
+            }
+            30% {
+                opacity: 1;
+                transform: translateY(-4px)
+            }
+        }
+        
+        .ai-chips {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            padding: 8px 16px 10px
+        }
+        
+        .ai-chip {
+            padding: 5px 14px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: .68rem;
+            font-weight: 500;
+            color: var(--text-mid);
+            cursor: pointer;
+            transition: .3s;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .ai-chip:hover {
+            border-color: var(--coral);
+            color: var(--coral);
+            background: var(--coral-light)
+        }
+        
+        .ai-msg.user {
+            flex-direction: row-reverse
+        }
+        
+        .ai-msg.user .m-bubble {
+            background: var(--coral-light);
+            border-color: rgba(232, 85, 61, .15);
+            border-radius: 16px 4px 16px 16px;
+        }
+        
+        .ai-msg.user .m-ava {
+            background: var(--indigo-light);
+            color: var(--indigo)
+        }
+        
+        .ai-foot {
+            padding: 14px 16px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .ai-mic-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1.5px solid var(--border);
+            color: var(--text-mid);
+            font-size: .85rem;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: .3s;
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        .ai-mic-btn:hover {
+            border-color: var(--coral);
+            color: var(--coral);
+            background: var(--coral-light);
+        }
+        
+        .ai-mic-btn.listening {
+            border-color: var(--coral);
+            color: #fff;
+            background: var(--coral);
+            animation: micPulse 1.2s ease-in-out infinite;
+        }
+        
+        .ai-mic-btn.listening::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid var(--coral);
+            opacity: 0;
+            animation: micRing 1.2s ease-out infinite;
+        }
+        
+        @keyframes micPulse {
+            0%,
+            100% {
+                transform: scale(1)
+            }
+            50% {
+                transform: scale(1.08)
+            }
+        }
+        
+        @keyframes micRing {
+            0% {
+                transform: scale(1);
+                opacity: .6
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0
+            }
+        }
+        
+        .ai-speaking-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            margin-left: 6px;
+        }
+        
+        .ai-speaking-indicator .bar {
+            width: 3px;
+            height: 10px;
+            background: var(--coral);
+            border-radius: 2px;
+            animation: speakBar .8s ease-in-out infinite alternate;
+        }
+        
+        .ai-speaking-indicator .bar:nth-child(2) {
+            animation-delay: .15s;
+            height: 14px
+        }
+        
+        .ai-speaking-indicator .bar:nth-child(3) {
+            animation-delay: .3s;
+            height: 8px
+        }
+        
+        .ai-speaking-indicator .bar:nth-child(4) {
+            animation-delay: .45s;
+            height: 12px
+        }
+        
+        @keyframes speakBar {
+            0% {
+                transform: scaleY(.4)
+            }
+            100% {
+                transform: scaleY(1)
+            }
+        }
+        
+        .ai-voice-status {
+            font-size: .6rem;
+            color: var(--coral);
+            text-align: center;
+            padding: 0 16px 4px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .ai-voice-status.active {
+            display: block;
+        }
+        
+        .ai-input {
+            flex: 1;
+            padding: 11px 16px;
+            background: var(--cream);
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            font-size: .82rem;
+            outline: none;
+            transition: .3s;
+        }
+        
+        .ai-input:focus {
+            border-color: var(--coral);
+            box-shadow: 0 0 0 4px var(--coral-light)
+        }
+        
+        .ai-input::placeholder {
+            color: var(--text-light);
+            font-size: .75rem
+        }
+        
+        .ai-send-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--dark);
+            border: none;
+            color: var(--cream);
+            font-size: .85rem;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: .4s;
+            flex-shrink: 0;
+        }
+        
+        .ai-send-btn:hover {
+            background: var(--coral);
+            transform: scale(1.05)
+        }
+        
+        .ai-send-btn:disabled {
+            opacity: .3;
+            cursor: default;
+            transform: none
+        }
         /* ====== RESPONSIVE ====== */
         
         @media(max-width:1024px) {
@@ -1700,8 +2115,90 @@
             }
             /* AI widget adjustments */
             .ai-panel {
-                width: min(320px, calc(100vw - 40px));
-                right: -10px
+                position: fixed;
+                width: auto;
+                left: 20px;
+                right: 20px;
+                bottom: 80px;
+                max-height: 480px
+            }
+            .ai-widget {
+                bottom: 20px;
+                right: 20px
+            }
+            .ai-fab {
+                width: 50px;
+                height: 50px;
+                font-size: 1.05rem
+            }
+            .ai-head {
+                padding: 14px 16px;
+                gap: 10px
+            }
+            .ai-ava {
+                width: 34px;
+                height: 34px;
+                font-size: .8rem
+            }
+            .ai-head-info h4 {
+                font-size: .88rem
+            }
+            .ai-body {
+                padding: 12px;
+                min-height: 160px;
+                max-height: 260px;
+                gap: 10px
+            }
+            .ai-msg .m-bubble {
+                max-width: calc(100% - 42px);
+                font-size: .78rem;
+                padding: 9px 12px;
+                line-height: 1.6
+            }
+            .ai-msg .m-ava {
+                width: 24px;
+                height: 24px;
+                font-size: .5rem
+            }
+            .ai-chips {
+                padding: 4px 12px 8px;
+                gap: 5px
+            }
+            .ai-chip {
+                font-size: .64rem;
+                padding: 4px 11px
+            }
+            .ai-foot {
+                padding: 10px 12px;
+                gap: 6px
+            }
+            .ai-mic-btn {
+                width: 36px;
+                height: 36px;
+                font-size: .75rem
+            }
+            .ai-voice-status {
+                font-size: .55rem;
+                padding: 0 12px 3px
+            }
+            .ai-input {
+                padding: 9px 14px;
+                font-size: .78rem
+            }
+            .ai-input::placeholder {
+                font-size: .7rem
+            }
+            .ai-send-btn {
+                width: 36px;
+                height: 36px;
+                font-size: .75rem
+            }
+            .ai-panel {
+                bottom: 72px;
+                border-radius: 20px
+            }
+            .ai-head {
+                border-radius: 20px 20px 0 0
             }
         }
         
@@ -1975,53 +2472,104 @@
             }
             /* AI widget */
             .ai-panel {
-                width: min(280px, calc(100vw - 40px));
-                right: -8px
+                position: fixed;
+                width: auto;
+                left: 16px;
+                right: 16px;
+                bottom: 72px;
+                border-radius: 18px;
+                max-height: 440px
             }
             .ai-widget {
-                bottom: 16px;
-                right: 16px
+                bottom: 14px;
+                right: 14px
             }
             .ai-fab {
-                width: 48px;
-                height: 48px;
-                font-size: 1rem
+                width: 44px;
+                height: 44px;
+                font-size: .95rem
             }
             .ai-head {
-                padding: 14px 16px
+                padding: 12px 14px;
+                gap: 8px;
+                border-radius: 18px 18px 0 0
+            }
+            .ai-ava {
+                width: 30px;
+                height: 30px;
+                font-size: .7rem;
+                border-radius: 8px
             }
             .ai-head-info h4 {
-                font-size: .85rem
+                font-size: .82rem
+            }
+            .ai-head-info p {
+                font-size: .6rem
             }
             .ai-body {
-                padding: 12px;
-                min-height: 160px;
-                max-height: 240px
+                padding: 10px;
+                min-height: 140px;
+                max-height: 220px;
+                gap: 8px
+            }
+            .ai-msg {
+                gap: 6px
             }
             .ai-msg .m-bubble {
-                max-width: 220px;
-                font-size: .78rem;
-                padding: 9px 12px
+                max-width: calc(100% - 34px);
+                font-size: .75rem;
+                padding: 8px 10px;
+                line-height: 1.55;
+                border-radius: 4px 14px 14px 14px
+            }
+            .ai-msg.user .m-bubble {
+                border-radius: 14px 4px 14px 14px
+            }
+            .ai-msg .m-ava {
+                width: 22px;
+                height: 22px;
+                font-size: .45rem;
+                border-radius: 6px
             }
             .ai-chips {
-                padding: 4px 12px 0;
+                padding: 3px 10px 8px;
                 gap: 4px
             }
             .ai-chip {
-                font-size: .62rem;
-                padding: 4px 10px
+                font-size: .6rem;
+                padding: 3px 9px
             }
             .ai-foot {
-                padding: 10px 12px
+                padding: 8px 10px;
+                gap: 6px
+            }
+            .ai-mic-btn {
+                width: 34px;
+                height: 34px;
+                font-size: .7rem
+            }
+            .ai-voice-status {
+                font-size: .52rem;
+                padding: 0 10px 2px
             }
             .ai-input {
-                padding: 10px 14px;
-                font-size: .78rem
+                padding: 8px 12px;
+                font-size: .75rem
+            }
+            .ai-input::placeholder {
+                font-size: .65rem
             }
             .ai-send-btn {
-                width: 36px;
-                height: 36px;
-                font-size: .75rem
+                width: 34px;
+                height: 34px;
+                font-size: .7rem
+            }
+            .ai-typing {
+                padding: 2px 0 6px 28px
+            }
+            .ai-typing span {
+                width: 5px;
+                height: 5px
             }
         }
         
@@ -2194,321 +2742,113 @@
                 margin-bottom: 8px
             }
             .ai-panel {
-                width: min(260px, calc(100vw - 32px));
-                right: -8px;
-                max-height: 420px
+                position: fixed;
+                width: auto;
+                left: 12px;
+                right: 12px;
+                bottom: 64px;
+                max-height: 400px;
+                border-radius: 16px
+            }
+            .ai-widget {
+                bottom: 12px;
+                right: 12px
+            }
+            .ai-fab {
+                width: 40px;
+                height: 40px;
+                font-size: .85rem
+            }
+            .ai-head {
+                padding: 10px 12px;
+                gap: 6px;
+                border-radius: 16px 16px 0 0
+            }
+            .ai-ava {
+                width: 26px;
+                height: 26px;
+                font-size: .65rem;
+                border-radius: 6px
+            }
+            .ai-head-info h4 {
+                font-size: .78rem
+            }
+            .ai-head-info p {
+                font-size: .55rem
+            }
+            .ai-head-info .dot {
+                width: 5px;
+                height: 5px
+            }
+            .ai-body {
+                padding: 8px;
+                min-height: 120px;
+                max-height: 190px;
+                gap: 6px
+            }
+            .ai-msg {
+                gap: 5px
+            }
+            .ai-msg .m-bubble {
+                max-width: calc(100% - 30px);
+                font-size: .7rem;
+                padding: 6px 8px;
+                line-height: 1.5;
+                border-radius: 3px 12px 12px 12px
+            }
+            .ai-msg.user .m-bubble {
+                border-radius: 12px 3px 12px 12px
+            }
+            .ai-msg .m-ava {
+                width: 20px;
+                height: 20px;
+                font-size: .4rem;
+                border-radius: 5px
+            }
+            .ai-chips {
+                padding: 2px 8px 6px;
+                gap: 3px
+            }
+            .ai-chip {
+                font-size: .55rem;
+                padding: 3px 7px
+            }
+            .ai-foot {
+                padding: 6px 8px;
+                gap: 5px
+            }
+            .ai-mic-btn {
+                width: 30px;
+                height: 30px;
+                font-size: .65rem
+            }
+            .ai-voice-status {
+                font-size: .5rem;
+                padding: 0 8px 2px
             }
             .ai-input {
-                font-size: .72rem;
-                padding: 8px 12px
+                font-size: .7rem;
+                padding: 7px 10px
+            }
+            .ai-input::placeholder {
+                font-size: .6rem
             }
             .ai-send-btn {
-                width: 34px;
-                height: 34px
+                width: 30px;
+                height: 30px;
+                font-size: .65rem
+            }
+            .ai-typing {
+                padding: 2px 0 4px 24px
+            }
+            .ai-typing span {
+                width: 4px;
+                height: 4px
             }
         }
         
         body.locked {
             overflow: hidden
-        }
-        /* ====== AI CHAT WIDGET ====== */
-        
-        .ai-widget {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            z-index: 990
-        }
-        
-        .ai-fab {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--dark);
-            border: none;
-            color: var(--cream);
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: grid;
-            place-items: center;
-            box-shadow: 0 8px 30px rgba(26, 26, 46, .35);
-            transition: .4s;
-        }
-        
-        .ai-fab:hover {
-            background: var(--coral);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(232, 85, 61, .3)
-        }
-        
-        .ai-panel {
-            position: absolute;
-            bottom: 72px;
-            right: 0;
-            width: 370px;
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .15);
-            display: flex;
-            flex-direction: column;
-            max-height: 520px;
-            overflow: hidden;
-            transform: scale(.9) translateY(20px);
-            opacity: 0;
-            visibility: hidden;
-            transition: all .35s cubic-bezier(.4, 0, .2, 1);
-        }
-        
-        .ai-panel.open {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-            visibility: visible
-        }
-        
-        .ai-head {
-            padding: 18px 20px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            border-bottom: 1px solid var(--border);
-            background: var(--cream);
-            border-radius: 24px 24px 0 0;
-        }
-        
-        .ai-ava {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: var(--coral-light);
-            display: grid;
-            place-items: center;
-            color: var(--coral);
-            font-size: .95rem;
-            flex-shrink: 0;
-        }
-        
-        .ai-head-info h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: .95rem;
-            font-weight: 700;
-            color: var(--dark)
-        }
-        
-        .ai-head-info p {
-            font-size: .7rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 6px
-        }
-        
-        .ai-head-info .dot {
-            width: 7px;
-            height: 7px;
-            background: #22c55e;
-            border-radius: 50%;
-            display: inline-block
-        }
-        
-        .ai-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            min-height: 200px;
-            max-height: 300px
-        }
-        
-        .ai-body::-webkit-scrollbar {
-            width: 4px
-        }
-        
-        .ai-body::-webkit-scrollbar-thumb {
-            background: var(--border-dark);
-            border-radius: 4px
-        }
-        
-        .ai-msg {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start
-        }
-        
-        .ai-msg .m-ava {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            display: grid;
-            place-items: center;
-            font-size: .55rem;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        
-        .ai-msg .m-ava {
-            background: var(--coral-light);
-            color: var(--coral)
-        }
-        
-        .ai-msg .m-bubble {
-            background: var(--cream);
-            border: 1px solid var(--border);
-            border-radius: 4px 16px 16px 16px;
-            padding: 11px 15px;
-            font-size: .82rem;
-            color: var(--text-mid);
-            line-height: 1.7;
-            max-width: 270px;
-        }
-        
-        .ai-msg .m-bubble strong {
-            color: var(--dark);
-            font-weight: 600
-        }
-        
-        .ai-msg .m-bubble .hl {
-            color: var(--coral);
-            font-weight: 600
-        }
-        
-        .ai-msg .m-bubble .hl2 {
-            color: var(--indigo);
-            font-weight: 600
-        }
-        
-        .ai-typing {
-            display: flex;
-            gap: 4px;
-            padding: 4px 0 8px 36px
-        }
-        
-        .ai-typing span {
-            width: 6px;
-            height: 6px;
-            background: var(--text-light);
-            border-radius: 50%;
-            animation: typDot 1.4s infinite
-        }
-        
-        .ai-typing span:nth-child(2) {
-            animation-delay: .2s
-        }
-        
-        .ai-typing span:nth-child(3) {
-            animation-delay: .4s
-        }
-        
-        @keyframes typDot {
-            0%,
-            60%,
-            100% {
-                opacity: .3;
-                transform: translateY(0)
-            }
-            30% {
-                opacity: 1;
-                transform: translateY(-4px)
-            }
-        }
-        
-        .ai-chips {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            padding: 6px 16px 0
-        }
-        
-        .ai-chip {
-            padding: 5px 14px;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-size: .68rem;
-            font-weight: 500;
-            color: var(--text-mid);
-            cursor: pointer;
-            transition: .3s;
-            background: transparent;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .ai-chip:hover {
-            border-color: var(--coral);
-            color: var(--coral);
-            background: var(--coral-light)
-        }
-        
-        .ai-msg.user {
-            flex-direction: row-reverse
-        }
-        
-        .ai-msg.user .m-bubble {
-            background: var(--coral-light);
-            border-color: rgba(232, 85, 61, .15);
-            border-radius: 16px 4px 16px 16px;
-        }
-        
-        .ai-msg.user .m-ava {
-            background: var(--indigo-light);
-            color: var(--indigo)
-        }
-        
-        .ai-foot {
-            padding: 14px 16px;
-            border-top: 1px solid var(--border);
-            display: flex;
-            gap: 8px;
-        }
-        
-        .ai-input {
-            flex: 1;
-            padding: 11px 16px;
-            background: var(--cream);
-            border: 1.5px solid var(--border);
-            border-radius: 100px;
-            color: var(--dark);
-            font-family: 'Inter', sans-serif;
-            font-size: .82rem;
-            outline: none;
-            transition: .3s;
-        }
-        
-        .ai-input:focus {
-            border-color: var(--coral);
-            box-shadow: 0 0 0 4px var(--coral-light)
-        }
-        
-        .ai-input::placeholder {
-            color: var(--text-light);
-            font-size: .75rem
-        }
-        
-        .ai-send-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--dark);
-            border: none;
-            color: var(--cream);
-            font-size: .85rem;
-            cursor: pointer;
-            display: grid;
-            place-items: center;
-            transition: .4s;
-            flex-shrink: 0;
-        }
-        
-        .ai-send-btn:hover {
-            background: var(--coral);
-            transform: scale(1.05)
-        }
-        
-        .ai-send-btn:disabled {
-            opacity: .3;
-            cursor: default;
-            transform: none
         }
     </style>
 </head>
@@ -2942,7 +3282,9 @@
                 <button class="ai-chip" data-q="Work experience?">Experience</button>
                 <button class="ai-chip" data-q="How to hire him?">Hire</button>
             </div>
+            <div class="ai-voice-status" id="aiVoiceStatus"></div>
             <div class="ai-foot">
+                <button class="ai-mic-btn" id="aiMic" title="Voice input"><i class="fas fa-microphone"></i></button>
                 <input type="text" class="ai-input" id="aiInput" placeholder="Ask anything about Dishant..." maxlength="200" autocomplete="off">
                 <button class="ai-send-btn" id="aiSend" disabled><i class="fas fa-paper-plane"></i></button>
             </div>
@@ -3201,7 +3543,7 @@
             input.addEventListener('keydown', e => {
                 if (e.key === 'Enter' && !sendBtn.disabled) handleSend();
             });
-            sendBtn.addEventListener('click', handleSend);
+            sendBtn.addEventListener('click', () => handleSend());
 
             document.querySelectorAll('.ai-chip').forEach(s => {
                 s.addEventListener('click', () => {
@@ -3211,7 +3553,7 @@
                 });
             });
 
-            function handleSend() {
+            function handleSend(fromVoice) {
                 if (isBusy) return;
                 const q = input.value.trim();
                 if (!q) return;
@@ -3224,17 +3566,19 @@
                 showTyping();
                 setTimeout(() => {
                     removeTyping();
-                    addBot(answer(q));
+                    const reply = answer(q);
+                    addBot(reply, fromVoice);
                     isBusy = false;
                 }, 600 + Math.random() * 500);
             }
 
-            function addBot(html) {
+            function addBot(html, speak) {
                 const d = document.createElement('div');
                 d.className = 'ai-msg';
                 d.innerHTML = `<div class="m-ava"><i class="fas fa-robot"></i></div><div class="m-bubble">${html}</div>`;
                 body.appendChild(d);
                 scrl();
+                if (speak) speakText(html);
             }
 
             function addUser(text) {
@@ -3263,6 +3607,144 @@
 
             function scrl() {
                 body.scrollTop = body.scrollHeight;
+            }
+
+            // ====== VOICE ASSISTANT ======
+            const micBtn = document.getElementById('aiMic');
+            const voiceStatus = document.getElementById('aiVoiceStatus');
+            let recognition = null;
+            let isListening = false;
+            let hadError = false;
+            let synth = window.speechSynthesis;
+
+            // Setup Speech Recognition
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SpeechRecognition) {
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = true;
+                recognition.lang = 'en-US';
+
+                recognition.onstart = () => {
+                    isListening = true;
+                    hadError = false;
+                    micBtn.classList.add('listening');
+                    micBtn.innerHTML = '<i class="fas fa-stop"></i>';
+                    voiceStatus.textContent = 'Listening...';
+                    voiceStatus.classList.add('active');
+                    input.placeholder = 'Listening...';
+                };
+
+                recognition.onresult = (e) => {
+                    let interim = '';
+                    let final = '';
+                    for (let i = e.resultIndex; i < e.results.length; i++) {
+                        const transcript = e.results[i][0].transcript;
+                        if (e.results[i].isFinal) {
+                            final += transcript;
+                        } else {
+                            interim += transcript;
+                        }
+                    }
+                    input.value = final || interim;
+                    sendBtn.disabled = !input.value.trim();
+                    if (final) {
+                        voiceStatus.textContent = 'Processing...';
+                    }
+                };
+
+                recognition.onend = () => {
+                    isListening = false;
+                    micBtn.classList.remove('listening');
+                    micBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                    input.placeholder = 'Ask anything about Dishant...';
+                    if (!hadError && input.value.trim()) {
+                        handleSend(true);
+                    }
+                    if (!hadError) {
+                        setTimeout(() => {
+                            voiceStatus.classList.remove('active');
+                        }, 500);
+                    }
+                };
+
+                recognition.onerror = (e) => {
+                    hadError = true;
+                    isListening = false;
+                    micBtn.classList.remove('listening');
+                    micBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                    input.placeholder = 'Ask anything about Dishant...';
+                    if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
+                        voiceStatus.textContent = 'Mic access denied';
+                    } else if (e.error === 'no-speech') {
+                        voiceStatus.textContent = 'No speech detected, try again';
+                    } else if (e.error === 'audio-capture') {
+                        voiceStatus.textContent = 'No microphone found';
+                    } else if (e.error === 'network') {
+                        voiceStatus.textContent = 'Voice service unavailable — use Chrome on HTTPS';
+                    } else if (e.error === 'aborted') {
+                        voiceStatus.classList.remove('active');
+                        return;
+                    } else {
+                        voiceStatus.textContent = 'Voice error (' + e.error + '), try again';
+                    }
+                    voiceStatus.classList.add('active');
+                    setTimeout(() => {
+                        voiceStatus.classList.remove('active');
+                    }, 3000);
+                };
+            } else {
+                micBtn.style.display = 'none';
+            }
+
+            micBtn.addEventListener('click', () => {
+                if (!recognition) return;
+                if (synth.speaking) {
+                    synth.cancel();
+                }
+                if (isListening) {
+                    recognition.stop();
+                } else {
+                    try {
+                        recognition.start();
+                    } catch (e) { /* already started */ }
+                }
+            });
+
+            // Text-to-Speech
+            function speakText(html) {
+                if (!synth) return;
+                synth.cancel();
+                const plain = html.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').replace(/&mdash;/g, '—').replace(/&bull;/g, '•').replace(/&#39;/g, "'").replace(/&quot;/g, '"');
+                const utter = new SpeechSynthesisUtterance(plain);
+                utter.rate = 1;
+                utter.pitch = 1;
+                utter.volume = 1;
+                utter.lang = 'en-US';
+
+                // Show speaking indicator
+                const lastBubble = body.querySelector('.ai-msg:last-child .m-bubble');
+                let indicator = null;
+                if (lastBubble) {
+                    indicator = document.createElement('span');
+                    indicator.className = 'ai-speaking-indicator';
+                    indicator.innerHTML = '<span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>';
+                    lastBubble.appendChild(indicator);
+                }
+                voiceStatus.textContent = 'Speaking...';
+                voiceStatus.classList.add('active');
+
+                utter.onend = () => {
+                    if (indicator) indicator.remove();
+                    voiceStatus.classList.remove('active');
+                };
+                utter.onerror = () => {
+                    if (indicator) indicator.remove();
+                    voiceStatus.classList.remove('active');
+                };
+
+                // Small delay to let bubble render
+                setTimeout(() => synth.speak(utter), 100);
             }
         })();
     </script>
