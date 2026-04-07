@@ -852,16 +852,26 @@
             transform: scale(1.06)
         }
         
+        .proj-thumb::before {
+            display: none;
+        }
+        
         .proj-thumb .proj-num {
             position: absolute;
-            top: 16px;
-            left: 18px;
+            top: 0;
+            right: 24px;
             z-index: 2;
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: rgba(255, 255, 255, .12);
+            font-size: 1rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--cream);
             line-height: 1;
+            background: var(--coral);
+            padding: 10px 10px 8px;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+            min-width: 32px;
+            text-align: center;
         }
         
         .proj-body {
@@ -3080,22 +3090,6 @@
                 <div class="proj-card reveal-scale">
                     <div class="proj-thumb">
                         <span class="proj-num">01</span>
-                        <img src="./imgs/GameWebSite.png" alt="Reflex Master Game">
-                    </div>
-                    <div class="proj-body">
-                        <h3>Reflex Master Game</h3>
-                        <p>Test your lightning-fast reflexes with this addictive game. React instantly to visual cues, push your response time to the limit, and beat your personal records.</p>
-                        <div class="proj-tags">
-                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
-                        </div>
-                        <a href="https://dishant-node-marquee.w3spaces.com/index.html" class="proj-link" target="_blank" rel="noopener noreferrer">
-            View Project <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-          </a>
-                    </div>
-                </div>
-                <div class="proj-card reveal-scale">
-                    <div class="proj-thumb">
-                        <span class="proj-num">02</span>
                         <img src="./imgs/paystub.png" alt="Paystub USA">
                     </div>
                     <div class="proj-body">
@@ -3111,7 +3105,7 @@
                 </div>
                 <div class="proj-card reveal-scale">
                     <div class="proj-thumb">
-                        <span class="proj-num">03</span>
+                        <span class="proj-num">02</span>
                         <img src="./imgs/bill-generator.png" alt="Online Bill Generator">
                     </div>
                     <div class="proj-body">
@@ -3121,6 +3115,86 @@
                             <span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>Next.js</span><span>PostgreSQL</span><span>Prisma</span><span>TypeScript</span>
                         </div>
                         <a href="https://onlinebillgenerator.com/" class="proj-link" target="_blank" rel="noopener noreferrer">
+            View Project <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+          </a>
+                    </div>
+                </div>
+                <div class="proj-card reveal-scale">
+                    <div class="proj-thumb">
+                        <span class="proj-num">03</span>
+                        <img src="./imgs/croforge_web.png" alt="CRO Forge">
+                    </div>
+                    <div class="proj-body">
+                        <h3>CRO Forge</h3>
+                        <p>AI-powered A/B testing platform — intelligently generates and tests page variations, headlines & CTAs to optimize conversions using real user data. No code required.</p>
+                        <div class="proj-tags">
+                            <span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>Next.js</span><span>Supabase</span>
+                        </div>
+                        <a href="https://croforge.com/" class="proj-link" target="_blank" rel="noopener noreferrer">
+            View Project <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+          </a>
+                    </div>
+                </div>
+                <div class="proj-card reveal-scale">
+                    <div class="proj-thumb">
+                        <span class="proj-num">04</span>
+                        <img src="./imgs/croforge_app.png" alt="CRO Forge App">
+                    </div>
+                    <div class="proj-body">
+                        <h3>CRO Forge App</h3>
+                        <p>AI-driven experimentation dashboard — launch A/B tests in minutes, track events & conversions, segment audiences, and let AI optimize your content for maximum impact.</p>
+                        <div class="proj-tags">
+                            <span>Node.js</span><span>Express.js</span><span>PostgreSQL</span><span>Next.js</span><span>Supabase</span><span>Anime.js</span>
+                        </div>
+                        <a href="https://app.croforge.com/" class="proj-link" target="_blank" rel="noopener noreferrer">
+            View Project <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+          </a>
+                    </div>
+                </div>
+                <div class="proj-card reveal-scale">
+                    <div class="proj-thumb">
+                        <span class="proj-num">05</span>
+                        <img src="./imgs/gold_trading_site.png" alt="J&D Vantage Quant">
+                    </div>
+                    <div class="proj-body">
+                        <h3>J&D Vantage Quant</h3>
+                        <p>Algorithmic gold trading platform — build, deploy & manage institutional-grade trading bots with verified live results, real-time analytics, and performance-only pricing.</p>
+                        <div class="proj-tags">
+                            <span>HTML</span><span>CSS</span><span>Tailwind</span><span>Anime.js</span><span>Three.js</span><span>JavaScript</span><span>MQL5</span><span>Supabase</span><span>MongoDB</span><span>TradingView</span><span>cTrader</span><span>Pine Script</span><span>MetaTrader 4</span>
+                        </div>
+                        <a href="https://jdvantagequant.com/#home" class="proj-link" target="_blank" rel="noopener noreferrer">
+            View Project <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+          </a>
+                    </div>
+                </div>
+                <div class="proj-card reveal-scale">
+                    <div class="proj-thumb">
+                        <span class="proj-num">06</span>
+                        <img src="./imgs/trade_copier.png" alt="Trade Copier Pro">
+                    </div>
+                    <div class="proj-body">
+                        <h3>Trade Copier Pro</h3>
+                        <p>Real-time trade mirroring system — copies master account trades with sub-15ms latency, custom lot sizing, live P&L monitoring, built-in risk management, and 24/5 automated operation.</p>
+                        <div class="proj-tags">
+                            <span>Python</span><span>MQL5</span><span>MQL4</span><span>MetaTrader 4</span><span>MetaTrader 5</span><span>JavaScript</span><span>n8n</span><span>Supabase</span><span>Firebase</span><span>Bootstrap</span><span>HTML</span>
+                        </div>
+                        <a href="https://jdvantagequant.com/#tradeCopier" class="proj-link" target="_blank" rel="noopener noreferrer">
+            View Project <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+          </a>
+                    </div>
+                </div>
+                <div class="proj-card reveal-scale">
+                    <div class="proj-thumb">
+                        <span class="proj-num">07</span>
+                        <img src="./imgs/GameWebSite.png" alt="Reflex Master Game">
+                    </div>
+                    <div class="proj-body">
+                        <h3>Reflex Master Game</h3>
+                        <p>Test your lightning-fast reflexes with this addictive game. React instantly to visual cues, push your response time to the limit, and beat your personal records.</p>
+                        <div class="proj-tags">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                        </div>
+                        <a href="https://dishant-node-marquee.w3spaces.com/index.html" class="proj-link" target="_blank" rel="noopener noreferrer">
             View Project <span class="arrow"><i class="fas fa-arrow-right"></i></span>
           </a>
                     </div>
